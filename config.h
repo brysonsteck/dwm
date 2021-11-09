@@ -1,34 +1,39 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "JetBrains Mono:size=12" };
-static const char dmenufont[]       = "JetBrains Mono:size=12";
-static const char col_black[]           = "#000000";
+static const int topbar             = 0;        /* 0 means bottom bar */
+static const char *fonts[]          = { "Roboto:size=14" };
+static const char dmenufont[]       = "Roboto:size=14";
+static const char col_turquoise[]   = "#00776C";
+static const char col_black[]       = "#000000";
 static const char col_gray1[]       = "#222222";
+static const char col_gray1_5[]     = "#333333";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
-static const char col_nord0[]        = "#2e3440";
-static const char col_nord1[]        = "#3b4252";
-static const char col_nord2[]        = "#434c5e";
-static const char col_nord3[]        = "#4c566a";
-static const char col_nord4[]        = "#d8dee9";
-static const char col_nord10[]        = "#5e81ac";
-static const unsigned int gappx      = 6;
+static const char col_nord0[]       = "#2e3440";
+static const char col_nord1[]       = "#3b4252";
+static const char col_nord2[]       = "#434c5e";
+static const char col_nord3[]       = "#4c566a";
+static const char col_nord4[]       = "#d8dee9";
+static const char col_nord10[]      = "#5e81ac";
+static const char col_blue[]        = "#144982";
+static const char col_yellow[]      = "#D3AD66";
+static const char col_warm_white[]  = "#DCD6B8";
+static const unsigned int gappx     = 6;
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_nord4, col_black, col_gray1 },
-	[SchemeSel]  = { col_nord4, col_gray2,  col_gray1  },
+	[SchemeNorm] = { col_nord4, col_black, col_black },
+	[SchemeSel]  = { col_nord4, col_gray1,  col_black  },
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4" };
+static const char *tags[] = { "1", "2", "3", "4", "5" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -38,6 +43,12 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "zoom",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+    { "Mars",     NULL,       NULL,       0,            1,           -1 },
+    { "Engrampa", NULL,       NULL,       0,            1,           -1 },
+    { "chatterino",NULL,      NULL,       0,            1,           -1 },
+    { "Wiimmfi-RPC v1.7.5",NULL,NULL,     0,            1,           -1 },
+    { "minecraft-launcher",NULL,NULL,     0,            1,           -1 },
+    { "nitrogen", NULL,       NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -48,9 +59,9 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
+	{ "t",      tile },    /* first entry is default */
+	{ "f",      NULL },    /* no layout function means floating behavior */
+	{ "m",      monocle },
 };
 
 /* key definitions */
@@ -66,7 +77,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run_history", "-b", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_gray3, "-sb", col_blue, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *brightnessup[]    = { "brightness-up", NULL };
 static const char *brightnessdown[]  = { "brightness-down", NULL };
