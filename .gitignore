@@ -1,2 +1,6 @@
 *.o
 /patches
+dwm
+*.orig
+*.rej
+*.1
