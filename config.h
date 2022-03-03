@@ -1,37 +1,22 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 3;        /* border pixel of windows */
+static const unsigned int borderpx  = 5;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Roboto:size=14", "emoji:size=14" };
-static const char dmenufont[]       = "Roboto:size=14";
-static const char col_turquoise[]   = "#00776C";
+static const char *fonts[]          = { "Inter-Bold:size=12", "emoji:size=12" };
+static const char dmenufont[]       = "Inter-Bold:size=12";
+//static const char *fonts[]          = { "ComicMono:size=12", "emoji:size=12" };
+//static const char dmenufont[]       = "ComicMono:size=12";
 static const char col_black[]       = "#000000";
 static const char col_black_border[] = "#101010";
 static const char col_gray1[]       = "#222222";
-static const char col_gray1_5[]     = "#333333";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
-static const char col_nord0[]       = "#2e3440";
-static const char col_nord1[]       = "#3b4252";
-static const char col_nord2[]       = "#434c5e";
-static const char col_nord3[]       = "#4c566a";
 static const char col_nord4[]       = "#d8dee9";
-static const char col_nord10[]      = "#5e81ac";
-static const char col_white1[]      = "#DBDBDD";
-static const char col_white2[]      = "#FFFFFF";
-static const char col_purple1[]     = "#02060F";
-static const char col_purple2[]     = "#0D0224";
 static const char col_blue[]        = "#144982";
-static const char col_blue2[]       = "#143968";
-static const char col_orange[]      = "#F59549";
-static const char col_other[]       = "#191C21";
-static const char col_yellow[]      = "#D3AD66";
-static const char col_warm_white[]  = "#DCD6B8";
 static const unsigned int gappx     = 6;
 /*  Display modes of the tab bar: never shown, always shown, shown only in  */
 /*  monocle mode in the presence of several windows.                        */
@@ -92,21 +77,23 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run_history", "-b", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_gray3, "-sb", col_blue, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "spawn-alacritty.sh", NULL };
-static const char *brightnessup[]    = { "brightness-up", NULL };
-static const char *brightnessdown[]  = { "brightness-down", NULL };
-static const char *screenshooter[]   = { "xfce4-screenshooter", NULL };
-static const char *volup[]           = { "volup.sh", NULL };
-static const char *voldown[]         = { "voldown.sh", NULL };
-static const char *volmute[]         = { "volmute.sh", NULL };
-static const char *firefox[]         = { "firefox", "--new-window", NULL };
+static const char *dmenucmd[]       = { "dmenu_run_history", "-b", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_gray3, "-sb", col_blue, "-sf", col_gray4, NULL };
+static const char *termcmd[]        = { "spawn-alacritty.sh", NULL };
+static const char *brightnessup[]   = { "brightness-up", NULL };
+static const char *brightnessdown[] = { "brightness-down", NULL };
+static const char *screenshooter[]  = { "screenshot.sh", NULL };
+static const char *volup[]          = { "volup.sh", NULL };
+static const char *voldown[]        = { "voldown.sh", NULL };
+static const char *volmute[]        = { "volmute.sh", NULL };
+static const char *firefox[]        = { "firefox", "--new-window", NULL };
+static const char *slock[]          = { "slock", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
     { MODKEY|ShiftMask,             XK_f,      spawn,          {.v = firefox } },
+    { MODKEY|ShiftMask,             XK_Escape, spawn,          {.v = slock } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
     { MODKEY,                       XK_w,      tabmode,        {-1} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
