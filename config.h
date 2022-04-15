@@ -1,22 +1,17 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 5;        /* border pixel of windows */
+static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 0;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Inter-Bold:size=12", "emoji:size=12" };
-static const char dmenufont[]       = "Inter-Bold:size=12";
-//static const char *fonts[]          = { "ComicMono:size=12", "emoji:size=12" };
-//static const char dmenufont[]       = "ComicMono:size=12";
-static const char col_black[]       = "#000000";
-static const char col_black_border[] = "#101010";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_nord4[]       = "#d8dee9";
-static const char col_blue[]        = "#144982";
+static const int topbar             = 1;        /* 0 means bottom bar */
+static const char *fonts[]          = { "Manrope:style=bold:size=13", "emoji:size=12" };
+static const char dmenufont[]       = "Manrope:style=bold:size=13";
+static const char fg[]              = "#ebdbb2";
+static const char bg_normal[]       = "#3c3836";
+static const char dr_normal[]       = "#282828";
+static const char bg_selected[]     = "#504945";
+static const char dr_selected[]     = "#ebdbb2";
 static const unsigned int gappx     = 6;
 /*  Display modes of the tab bar: never shown, always shown, shown only in  */
 /*  monocle mode in the presence of several windows.                        */
@@ -27,12 +22,12 @@ static const int toptab				= False;               /* False means bottom tab bar 
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_nord4, col_black, col_black_border },
-	[SchemeSel]  = { col_nord4, col_gray1,  col_blue  },
+	[SchemeNorm] = { fg, bg_normal, dr_normal },
+	[SchemeSel]  = { fg, bg_selected, dr_selected },
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -60,12 +55,12 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "t",      tile },    /* first entry is default */
-	{ "f",      NULL },    /* no layout function means floating behavior */
+	{ "FL",      NULL },    /* no layout function means floating behavior */
 	{ "m",      monocle },
 };
 
 /* key definitions */
-#define MODKEY Mod1Mask
+#define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -77,10 +72,10 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]       = { "dmenu_run_history", "-b", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_gray3, "-sb", col_blue, "-sf", col_gray4, NULL };
+static const char *dmenucmd[]       = { "dmenu_run_history", "-m", dmenumon, "-fn", dmenufont, "-nb", bg_normal, "-nf", fg, "-sb", bg_selected, "-sf", fg, NULL };
 static const char *termcmd[]        = { "spawn-alacritty.sh", NULL };
-static const char *brightnessup[]   = { "brightness-up", NULL };
-static const char *brightnessdown[] = { "brightness-down", NULL };
+static const char *brightnessup[]   = { "brightness-up.sh", NULL };
+static const char *brightnessdown[] = { "brightness-down.sh", NULL };
 static const char *screenshooter[]  = { "screenshot.sh", NULL };
 static const char *volup[]          = { "volup.sh", NULL };
 static const char *voldown[]        = { "voldown.sh", NULL };
