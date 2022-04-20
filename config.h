@@ -27,7 +27,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -79,9 +79,12 @@ static const char *brightnessdown[] = { "brightness-down.sh", NULL };
 static const char *screenshooter[]  = { "screenshot.sh", NULL };
 static const char *volup[]          = { "volup.sh", NULL };
 static const char *voldown[]        = { "voldown.sh", NULL };
-static const char *volmute[]        = { "volmute.sh", NULL };
+//static const char *volmute[]        = { "volmute.sh", NULL }; (replaced with *next[] for different keyboards)
 static const char *firefox[]        = { "firefox", "--new-window", NULL };
 static const char *slock[]          = { "slock", NULL };
+static const char *playpause[]      = { "playerctl", "play-pause", NULL };
+static const char *next[]           = { "f9.sh", NULL };
+static const char *previous[]       = { "playerctl", "previous", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -111,12 +114,14 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-    { MODKEY,                       XK_F4,     spawn,          {.v = brightnessup } },
-    { MODKEY,                       XK_F3,     spawn,          {.v = brightnessdown } },
-    { MODKEY,                       XK_Print,  spawn,          {.v = screenshooter } },
-    { MODKEY,                       XK_F9,     spawn,          {.v = volmute } },
-    { MODKEY,                       XK_F10,    spawn,          {.v = voldown } },
-    { MODKEY,                       XK_F11,    spawn,          {.v = volup } },
+  { MODKEY,                       XK_F4,     spawn,          {.v = brightnessup } },
+  { MODKEY,                       XK_F3,     spawn,          {.v = brightnessdown } },
+  { MODKEY,                       XK_Print,  spawn,          {.v = screenshooter } },
+  { MODKEY,                       XK_F10,    spawn,          {.v = voldown } },
+  { MODKEY,                       XK_F11,    spawn,          {.v = volup } },
+  { MODKEY,                       XK_F7,    spawn,           {.v = previous } },
+  { MODKEY,                       XK_F8,    spawn,            {.v = playpause } },
+  { MODKEY,                       XK_F9,    spawn,          {.v = next } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
