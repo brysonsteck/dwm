@@ -27,7 +27,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -57,6 +57,7 @@ static const Layout layouts[] = {
 	{ "t",      tile },    /* first entry is default */
 	{ "FL",      NULL },    /* no layout function means floating behavior */
 	{ "m",      monocle },
+  { "=",      bstackhoriz },
 };
 
 /* key definitions */
@@ -80,7 +81,7 @@ static const char *screenshooter[]  = { "screenshot.sh", NULL };
 static const char *volup[]          = { "volup.sh", NULL };
 static const char *voldown[]        = { "voldown.sh", NULL };
 //static const char *volmute[]        = { "volmute.sh", NULL }; (replaced with *next[] for different keyboards)
-static const char *firefox[]        = { "firefox", "--new-window", NULL };
+static const char *firefox[]        = { "librewolf-bin", NULL };
 static const char *slock[]          = { "slock", NULL };
 static const char *playpause[]      = { "playerctl", "play-pause", NULL };
 static const char *next[]           = { "f9.sh", NULL };
@@ -106,6 +107,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[3]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
