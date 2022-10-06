@@ -27,7 +27,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "!", "@", "#", "$", "%", "^", "&", "*" };
+static const char *tags[] = { "!", "@", "#", "$", "%" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -59,6 +59,8 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
+// Mod4Mask is super
+// Mod1Mask is alt/meta
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
