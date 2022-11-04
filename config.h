@@ -89,6 +89,7 @@ static const char *slock[]          = { "slock", NULL };
 static const char *playpause[]      = { "playerctl", "play-pause", NULL };
 static const char *next[]           = { "f9.sh", NULL };
 static const char *previous[]       = { "playerctl", "previous", NULL };
+static const char *keepass[]        = { "keepassxc", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -130,6 +131,7 @@ static Key keys[] = {
   { MODKEY,                       XK_F7,    spawn,           {.v = previous } },
   { MODKEY,                       XK_F8,    spawn,            {.v = playpause } },
   { MODKEY,                       XK_F9,    spawn,          {.v = next } },
+  { MODKEY|ShiftMask,             XK_k,     spawn,          {.v = keepass } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
