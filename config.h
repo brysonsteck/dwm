@@ -57,6 +57,8 @@ static const Layout layouts[] = {
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+	{ "TTT",      bstack },
+	{ "===",      bstackhoriz },
 };
 
 /* key definitions */
@@ -74,16 +76,15 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-//static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+//static const char *dmenucmd[]       = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", bg_normal, "-nf", fg, "-sb", bg_selected, "-sf", fg, NULL };
 static const char *dmenucmd[]       = { "dmenu_run_history", "-m", dmenumon, "-fn", dmenufont, "-nb", bg_normal, "-nf", fg, "-sb", bg_selected, "-sf", fg, NULL };
-//static const char *termcmd[]  = { "st", NULL };
 static const char *termcmd[]        = { "spawn-alacritty.sh", NULL };
 static const char *brightnessup[]   = { "brightness-up.sh", NULL };
 static const char *brightnessdown[] = { "brightness-down.sh", NULL };
 static const char *screenshooter[]  = { "screenshot.sh", NULL };
 static const char *volup[]          = { "volup.sh", NULL };
 static const char *voldown[]        = { "voldown.sh", NULL };
-//static const char *volmute[]        = { "volmute.sh", NULL }; (replaced with *next[] for different keyboards)
+//static const char *firefox[]        = { "firefox-bin", NULL };
 static const char *firefox[]        = { "librewolf-bin", NULL };
 static const char *slock[]          = { "slock", NULL };
 static const char *playpause[]      = { "playerctl", "play-pause", NULL };
@@ -98,7 +99,6 @@ static Key keys[] = {
   { MODKEY|ShiftMask,             XK_f,      spawn,          {.v = firefox } },
   { MODKEY|ShiftMask,             XK_Escape, spawn,          {.v = slock } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
-//  { MODKEY,                       XK_w,      tabmode,        {-1} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
@@ -111,6 +111,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -127,10 +129,10 @@ static Key keys[] = {
   { MODKEY,                       XK_Print,  spawn,          {.v = screenshooter } },
   { MODKEY,                       XK_F10,    spawn,          {.v = voldown } },
   { MODKEY,                       XK_F11,    spawn,          {.v = volup } },
-  { MODKEY,                       XK_F7,    spawn,           {.v = previous } },
-  { MODKEY,                       XK_F8,    spawn,            {.v = playpause } },
-  { MODKEY,                       XK_F9,    spawn,          {.v = next } },
-  { MODKEY|ShiftMask,             XK_k,     spawn,          {.v = keepass } },
+  { MODKEY,                       XK_F7,     spawn,          {.v = previous } },
+  { MODKEY,                       XK_F8,     spawn,          {.v = playpause } },
+  { MODKEY,                       XK_F9,     spawn,          {.v = next } },
+  { MODKEY|ShiftMask,             XK_k,      spawn,          {.v = keepass } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
