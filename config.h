@@ -8,7 +8,7 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int swallowfloating    = 0;
 static const char *fonts[]          = { "JetBrains Mono NF:style=medium:size=11" };
-static const char dmenufont[]       = "JetBrains Mono NF:stlye=medium:size=11";
+static const char dmenufont[]       = "JetBrains Mono NF:style=medium:size=11";
 // gruvbox
 static const char fg[]              = "#ebdbb2";
 static const char bg_normal[]       = "#3c3836";
@@ -26,6 +26,9 @@ static const char *colors[][3]      = {
 	[SchemeNorm] = { fg, bg_normal, dr_normal },
 	[SchemeSel]  = { fg, bg_selected, dr_selected },
 };
+
+static const XPoint stickyicon[]    = { {0,0}, {4,0}, {4,8}, {2,6}, {0,8}, {0,0} }; /* represents the icon as an array of vertices */
+static const XPoint stickyiconbb    = {4,8};	/* defines the bottom right corner of the polygon's bounding box (speeds up scaling) */
 
 /* tagging */
 static const char *tags[] = { "!", "@", "#", "$", "%", "^", "&", "*", "(" };
@@ -91,6 +94,7 @@ static const char *playpause[]      = { "playerctl", "play-pause", NULL };
 static const char *next[]           = { "f9.sh", NULL };
 static const char *previous[]       = { "playerctl", "previous", NULL };
 static const char *keepass[]        = { "keepassxc", NULL };
+static const char *quitconf[]       = { "quitconf", dmenumon, bg_normal, fg, fg, NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -115,6 +119,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+	{ MODKEY,                       XK_s,      togglesticky,   {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
@@ -142,7 +147,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_BackSpace,      quit,           {0} },
+	{ MODKEY|ShiftMask,             XK_BackSpace,      spawn,           {.v = quitconf} },
 };
 
 /* button definitions */
