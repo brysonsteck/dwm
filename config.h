@@ -38,15 +38,16 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "zoom",     NULL,       NULL,       0,            1,           -1 },
-  { "Mars",     NULL,       NULL,       0,            1,           -1 },
-  { "Engrampa", NULL,       NULL,       0,            1,           -1 },
-  { "chatterino",NULL,      NULL,       0,            1,           -1 },
-  { "Wiimmfi-RPC v1.7.5",NULL,NULL,     0,            1,           -1 },
-  { "minecraft-launcher",NULL,NULL,     0,            1,           -1 },
-  { "nitrogen", NULL,       NULL,       0,            1,           -1 },
-  { "Galculator",NULL,      NULL,       0,            1,           -1 },
+	/* class      instance    title       tags mask     isfloating   isterminal   noswallow   monitor */
+	{ "zoom",     NULL,       NULL,       0,            1,           0,           0,          -1 },
+  { "Mars",     NULL,       NULL,       0,            1,           0,           0,          -1 },
+  { "Engrampa", NULL,       NULL,       0,            1,           0,           0,          -1 },
+  { "chatterino",NULL,      NULL,       0,            1,           0,           0,          -1 },
+  { "Wiimmfi-RPC v1.7.5",NULL,NULL,     0,            1,           0,           0,          -1 },
+  { "minecraft-launcher",NULL,NULL,     0,            1,           0,           0,          -1 },
+  { "nitrogen", NULL,       NULL,       0,            1,           0,           0,          -1 },
+  { "Galculator",NULL,      NULL,       0,            1,           0,           0,          -1 },
+  { "Alacritty",NULL,      NULL,        0,            0,           1,           0,          -1 },
 };
 
 /* layout(s) */
@@ -67,7 +68,7 @@ static const Layout layouts[] = {
 /* key definitions */
 // Mod4Mask is super
 // Mod1Mask is alt/meta
-#define MODKEY Mod1Mask
+#define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -94,6 +95,7 @@ static const char *playpause[]      = { "playerctl", "play-pause", NULL };
 static const char *next[]           = { "f9.sh", NULL };
 static const char *previous[]       = { "playerctl", "previous", NULL };
 static const char *keepass[]        = { "keepassxc", NULL };
+static const char *joplin[]         = { "joplin.AppImage", NULL };
 static const char *quitconf[]       = { "quitconf", dmenumon, bg_normal, fg, fg, NULL };
 
 static Key keys[] = {
@@ -138,6 +140,8 @@ static Key keys[] = {
   { MODKEY,                       XK_F8,     spawn,          {.v = playpause } },
   { MODKEY,                       XK_F9,     spawn,          {.v = next } },
   { MODKEY|ShiftMask,             XK_k,      spawn,          {.v = keepass } },
+  { MODKEY|ShiftMask,             XK_j,      spawn,          {.v = joplin } },
+	{ MODKEY|ShiftMask,             XK_BackSpace, spawn,       {.v = quitconf} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -147,7 +151,6 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_BackSpace,      spawn,           {.v = quitconf} },
 };
 
 /* button definitions */
